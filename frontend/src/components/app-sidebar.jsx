@@ -18,6 +18,7 @@ import {
     SettingsIcon,
     UsersIcon,
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
@@ -42,109 +43,56 @@ const data = {
     navMain: [
         {
             title: "Dashboard",
-            url: "#",
+            url: "/administration",
             icon: LayoutDashboardIcon,
         },
         {
-            title: "Lifecycle",
-            url: "#",
-            icon: ListIcon,
+            title: "Products",
+            url: "/administration/products",
+            icon: FileTextIcon,
+        },
+        {
+            title: "Inventory",
+            url: "/administration/inventory",
+            icon: ClipboardListIcon,
+        },
+        {
+            title: "Customers",
+            url: "/administration",
+            icon: UsersIcon,
         },
         {
             title: "Analytics",
-            url: "#",
+            url: "/administration",
             icon: BarChartIcon,
-        },
-        {
-            title: "Projects",
-            url: "#",
-            icon: FolderIcon,
-        },
-        {
-            title: "Team",
-            url: "#",
-            icon: UsersIcon,
-        },
-    ],
-    navClouds: [
-        {
-            title: "Capture",
-            icon: CameraIcon,
-            isActive: true,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Proposal",
-            icon: FileTextIcon,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Prompts",
-            icon: FileCodeIcon,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
         },
     ],
     navSecondary: [
         {
             title: "Settings",
-            url: "#",
+            url: "/administration",
             icon: SettingsIcon,
         },
         {
-            title: "Get Help",
-            url: "#",
+            title: "Help Center",
+            url: "/administration",
             icon: HelpCircleIcon,
-        },
-        {
-            title: "Search",
-            url: "#",
-            icon: SearchIcon,
         },
     ],
     documents: [
         {
-            name: "Data Library",
-            url: "#",
+            name: "Orders",
+            url: "/administration",
             icon: DatabaseIcon,
         },
         {
-            name: "Reports",
-            url: "#",
-            icon: ClipboardListIcon,
+            name: "Promotions",
+            url: "/administration",
+            icon: ArrowUpCircleIcon,
         },
         {
-            name: "Word Assistant",
-            url: "#",
+            name: "Stock Reports",
+            url: "/administration",
             icon: FileIcon,
         },
     ],
@@ -152,18 +100,18 @@ const data = {
 
 export function AppSidebar({ ...props }) {
     return (
-        <Sidebar collapsible="offcanvas" {...props}>
+        <Sidebar collapsible="icon" {...props}>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
-                            className="data-[slot=sidebar-menu-button]:!p-1.5"
+                            className="data-[slot=sidebar-menu-button]:!p-1.5 dark:text-white text-black"
                         >
-                            <a href="#">
+                            <Link to="/administration">
                                 <ArrowUpCircleIcon className="h-5 w-5" />
-                                <span className="text-base font-semibold">Acme Inc.</span>
-                            </a>
+                                <span className="text-base font-semibold dark:text-white text-black">Clothline.</span>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>

@@ -115,11 +115,11 @@ export function NavUser() {
                         >
                             <Avatar className="h-8 w-8 rounded-lg grayscale text-black">
                                 <AvatarImage src={userToDisplay.avatar} alt={userToDisplay.name} />
-                                <AvatarFallback className="rounded-lg text-black">{initials}</AvatarFallback>
+                                <AvatarFallback className="rounded-lg text-black dark:text-white">{initials}</AvatarFallback>
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-medium">{userToDisplay.name}</span>
-                                <span className="truncate text-xs text-muted-foreground">
+                                <span className="truncate font-medium dark:text-white text-black">{userToDisplay.name}</span>
+                                <span className="truncate text-xs text-muted-foreground dark:text-white text-black">
                                     {userToDisplay.email}
                                 </span>
                             </div>
@@ -136,7 +136,7 @@ export function NavUser() {
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage src={userToDisplay.avatar} alt={userToDisplay.name} />
-                                    <AvatarFallback className="rounded-lg text-black">{initials}</AvatarFallback>
+                                    <AvatarFallback className="rounded-lg text-black dark:text-white">{initials}</AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-medium text-white">{userToDisplay.name}</span>
@@ -148,7 +148,7 @@ export function NavUser() {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem className="text-white hover:bg-gray-700">
+                            <DropdownMenuItem className="text-white hover:bg-gray-700 ">
                                 <UserCircleIcon />
                                 Account
                             </DropdownMenuItem>

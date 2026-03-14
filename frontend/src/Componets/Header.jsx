@@ -55,7 +55,7 @@ const Header = () => {
         <nav className="flex flex-col space-y-4 text-gray-800 dark:text-white">
           <a href="/" className="hover:text-gray-900 transition-colors dark:hover:text-white">Home</a>
           <Pop2 />
-          <a href="/" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>About</a>
+          <a href="#about" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>About</a>
           <a href="/" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>Contact</a>
         </nav>
         <br />
@@ -89,7 +89,7 @@ const Header = () => {
           <ul className="flex items-center gap-6 font-medium text-black dark:text-white">
             <li><a href="/" className="hover:opacity-70 transition-opacity">Home</a></li>
             <li><Pop /></li>
-            <li><a href="/" className="hover:opacity-70 transition-opacity">About</a></li>
+            <li><a href="#about" className="hover:opacity-70 transition-opacity">About</a></li>
             <li><a href="/" className="hover:opacity-70 transition-opacity">Contact</a></li>
           </ul>
         </div>

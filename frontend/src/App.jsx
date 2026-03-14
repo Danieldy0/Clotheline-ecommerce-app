@@ -1,7 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
+import About from './Componets/About'
 import AdministrationHome from './Pages/Administration/Home'
+import AdminProducts from './Pages/Administration/Products'
 import AdminLog from './Pages/Administration/AdminLog'
 import Signup from './Pages/Signup'
 import Signin from './Pages/Signin'
@@ -11,7 +13,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/administration" element={<AdministrationHome />} />
+        <Route path="/administration/products" element={<AdminProducts />} />
         <Route path="/adminlog" element={<AdminLog />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />

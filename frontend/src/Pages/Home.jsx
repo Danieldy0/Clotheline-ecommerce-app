@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Header from '../Componets/Header'
 import HeroCarosel from '../Componets/HeroCarosel'
 import LogDialog from '../Componets/Utils/LogDialog'
+import About from '../Componets/About'
 
 const Home = () => {
   const location = useLocation()
@@ -38,6 +39,7 @@ const Home = () => {
           />
         )}
         <HeroCarosel />
+        <About />
       </main>
     </div>
   )
