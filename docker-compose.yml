@@ -1,4 +1,18 @@
 services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
     build:
       context: .
@@ -9,9 +23,18 @@ services:
       - SECRET_KEY=dev-secret-key-change-this-in-production
       - DEBUG=True
       - ALLOWED_HOSTS=localhost 127.0.0.1 backend
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
     volumes:
       - .:/app
+    # Use runserver for development; gunicorn is in the Dockerfile for production
     command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      db:
+        condition: service_healthy
 
   frontend:
     build:
@@ -23,3 +46,6 @@ services:
       - backend
     environment:
       - VITE_API_URL=http://localhost:8000/api
+
+volumes:
+  postgres_data:

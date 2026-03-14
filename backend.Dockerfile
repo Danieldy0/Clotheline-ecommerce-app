@@ -1,5 +1,5 @@
 # Use official Python runtime as base image
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -9,10 +9,9 @@ ENV DEBUG False
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies
+# Install runtime dependencies for Postgres and Pillow
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
+    libpq5 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
