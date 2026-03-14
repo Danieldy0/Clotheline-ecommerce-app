@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,13 +21,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-u%kb+r1zvo!(2cy=mr9^l5m1_e+r(oo9jhhh#@y060q+aukevz')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1 [::1]').split()
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY and DEBUG:
+    SECRET_KEY = 'django-insecure-u%kb+r1zvo!(2cy=mr9^l5m1_e+r(oo9jhhh#@y060q+aukevz'
+elif not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set!")
+
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1 [::1]').split()
+ALLOWED_HOSTS = [
+    'clotheline-ecommerce-app.onrender.com', 
+    'localhost', 
+    '127.0.0.1',
+    os.environ.get("RENDER_EXTERNAL_HOSTNAME") # Render automatically provides this
+]
 
 
 # Application definition
@@ -78,24 +89,25 @@ WSGI_APPLICATION = 'clothline_api.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+# Use DATABASE_URL if it exists (Render/Production), otherwise fallback to Docker local postgres
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",  
-        "PORT": 5432,  
-    }
+    'default': dj_database_url.config(
+        default='postgres://postgres:postgres@db:5432/postgres',
+        conn_max_age=600
+    )
 }
 
 # CORS configuration
 CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all only in debug
 if not DEBUG:
-    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split()
+    CORS_ALLOWED_ORIGINS = [
+        "https://clotheline-ecommerce-app.vercel.app", # Adjust if your Vercel URL is different
+    ] + os.environ.get('CORS_ALLOWED_ORIGINS', '').split()
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://clotheline-ecommerce-app.onrender.com',
+    'https://clotheline-ecommerce-app.vercel.app' # Trusted frontend for CSRF
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

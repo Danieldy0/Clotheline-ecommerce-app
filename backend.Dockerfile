@@ -5,6 +5,7 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG False
+ENV SECRET_KEY build-time-insecure-key
 
 # Set work directory
 WORKDIR /app
