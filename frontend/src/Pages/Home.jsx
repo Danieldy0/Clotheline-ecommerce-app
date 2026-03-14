@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import Header from '../Componets/Header'
-import HeroCarosel from '../Componets/HeroCarosel'
-import LogDialog from '../Componets/Utils/LogDialog'
-import About from '../Componets/About'
+import Header from '../components/Header'
+import HeroCarosel from '../components/HeroCarosel'
+import LogDialog from '../components/Utils/LogDialog'
+import About from '../components/About'
 
 const Home = () => {
   const location = useLocation()

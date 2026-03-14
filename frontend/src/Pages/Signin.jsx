@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Form from '../Componets/Utils/Form2'
+import Form from '../components/Utils/Form2'
 import { HomeIcon, MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { Switch } from "@headlessui/react";
 
