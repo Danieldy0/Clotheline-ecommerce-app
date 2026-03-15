@@ -28,5 +28,5 @@ RUN python manage.py collectstatic --noinput
 # Expose port
 EXPOSE 8000
 
-# Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "clothline_api.wsgi:application"]
+# Run migrations and then start gunicorn
+CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 clothline_api.wsgi:application"]
