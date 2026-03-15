@@ -34,7 +34,7 @@ function Form() {
 
   return (
     <div className='flex items-center justify-center w-full px-4'>
-      <div className='flex items-stretch max-w-4xl w-full bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/30'>
+      <div className='flex flex-row-reverse items-stretch max-w-4xl w-full bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/30'>
         <form onSubmit={handleSubmit} className="flex-1">
           <Fieldset className="h-full space-y-6 p-8 md:p-12 box-border flex flex-col justify-center">
             <Legend className="text-2xl font-semibold tracking-tight text-black dark:text-white">User details</Legend>
