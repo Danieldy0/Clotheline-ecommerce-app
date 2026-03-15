@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award } from 'lucide-react';
+import AboutVideo from '../assets/about.mp4';
 
 const About = () => {
   return (
@@ -68,11 +69,7 @@ const About = () => {
           {/* Right Image Column with floating card */}
           <div className="relative mt-10 lg:mt-0">
             <div className="rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
-              <img
-                src="https://images.unsplash.com/photo-1600880212340-8302c930438b?q=80&w=2070&auto=format&fit=crop"
-                alt="Productivity in workplace"
-                className="w-full h-auto object-cover min-h-[600px] brightness-100 dark:brightness-90 transition-all duration-500"
-              />
+              <video src={AboutVideo} autoPlay loop muted />
             </div>
 
             {/* Award Floating Card - precisely as in design */}
