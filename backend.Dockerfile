@@ -5,12 +5,11 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG False
-ENV SECRET_KEY build-time-insecure-key
 
 # Set work directory
 WORKDIR /app
 
-# Install runtime dependencies for Postgres and Pillow
+# Install runtime dependencies for Postgres
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     && rm -rf /var/lib/apt/lists/*
@@ -25,8 +24,12 @@ COPY . /app/
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Expose port
+# Copy the entrypoint script and make it executable
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Expose port (Azure/GCP/AWS usually default to 80 or 8080, but 8000 is fine)
 EXPOSE 8000
 
-# Run migrations and then start gunicorn
-CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 clothline_api.wsgi:application"]
+# Use the ENTRYPOINT to ensure migrations always run
+ENTRYPOINT ["/app/entrypoint.sh"]
