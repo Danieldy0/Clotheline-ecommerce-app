@@ -13,6 +13,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 html {
+  scroll-behavior: smooth;
   font-size: 67%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

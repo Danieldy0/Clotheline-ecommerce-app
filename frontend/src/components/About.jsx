@@ -4,7 +4,7 @@ import AboutVideo from '../assets/about.mp4';
 
 const About = () => {
   return (
-    <section className="py-24 bg-white dark:bg-black font-sans transition-colors duration-500 overflow-hidden">
+    <section id="about" className="scroll-mt-20 py-24 bg-white dark:bg-black font-sans transition-colors duration-500 overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Top Header Section (from Image 2) */}
         <div className="text-center mb-20">

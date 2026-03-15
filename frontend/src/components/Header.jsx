@@ -13,6 +13,29 @@ const Header = () => {
     return localStorage.getItem("theme") === "dark";
   });
 
+  const handleScrollToAbout = (e) => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      e.preventDefault();
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Close mobile menu if open
+      const menuToggle = document.getElementById('menu_toggle');
+      if (menuToggle) menuToggle.checked = false;
+    }
+  };
+
+  const handleScrollToTop = (e) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Close mobile menu if open
+      const menuToggle = document.getElementById('menu_toggle');
+      if (menuToggle) menuToggle.checked = false;
+    }
+  };
+
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -53,9 +76,9 @@ const Header = () => {
           </label>
         </div>
         <nav className="flex flex-col space-y-4 text-gray-800 dark:text-white">
-          <a href="/" className="hover:text-gray-900 transition-colors dark:hover:text-white">Home</a>
+          <a href="/" className="hover:text-gray-900 transition-colors dark:hover:text-white" onClick={handleScrollToTop}>Home</a>
           <Pop2 />
-          <a href="#about" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>About</a>
+          <a href="/#about" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={handleScrollToAbout}>About</a>
           <a href="/" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>Contact</a>
         </nav>
         <br />
@@ -87,9 +110,9 @@ const Header = () => {
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center">
           <ul className="flex items-center gap-6 font-medium text-black dark:text-white">
-            <li><a href="/" className="hover:opacity-70 transition-opacity">Home</a></li>
+            <li><a href="/" className="hover:opacity-70 transition-opacity" onClick={handleScrollToTop}>Home</a></li>
             <li><Pop /></li>
-            <li><a href="#about" className="hover:opacity-70 transition-opacity">About</a></li>
+            <li><a href="/#about" className="hover:opacity-70 transition-opacity" onClick={handleScrollToAbout}>About</a></li>
             <li><a href="/" className="hover:opacity-70 transition-opacity">Contact</a></li>
           </ul>
         </div>
