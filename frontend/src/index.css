@@ -13,7 +13,9 @@
 @variant dark (&:where(.dark, .dark *));
 
 html {
-  font-size: 67%;
+  font-size: 85%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
