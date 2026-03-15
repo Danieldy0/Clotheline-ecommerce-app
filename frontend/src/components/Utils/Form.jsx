@@ -33,43 +33,38 @@ function Form() {
   }
 
   return (
-    <div className='flex items-center justify-center w-full px-4'>
-      <div className='flex flex-row-reverse items-stretch max-w-4xl w-full bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/30'>
-        <form onSubmit={handleSubmit} className="flex-1">
-          <Fieldset className="h-full space-y-6 p-8 md:p-12 box-border flex flex-col justify-center">
-            <Legend className="text-2xl font-semibold tracking-tight text-black dark:text-white">User details</Legend>
-            <Field>
-              <Label className="block text-sm font-medium text-black/60 dark:text-white/60">First name</Label>
-              <Input
-                className="mt-2 block bg-white/50 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base w-full focus:outline-none focus:ring-2 focus:ring-black/5 transition-all"
-                name="firstname"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
-              />
-            </Field>
-            <Field>
-              <Label className="block text-sm font-medium text-black/60 dark:text-white/60">Last name</Label>
-              <Input
-                className="mt-2 block bg-white/50 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base w-full focus:outline-none focus:ring-2 focus:ring-black/5 transition-all"
-                name="lastname"
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
-              />
-            </Field>
-            <button
-              type="submit"
-              className="mt-6 rounded-xl bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold hover:opacity-90 transition-opacity active:scale-[0.98]"
-            >
-              Sign Up
-            </button>
-            {status && <p className="mt-4 text-sm font-medium text-black/70 dark:text-white/70">{status}</p>}
-          </Fieldset>
-        </form>
-        <div className='hidden md:block w-1/2 relative'>
-          <img src={bgImage} alt="" className='absolute inset-0 w-full h-full object-cover' />
-          <div className='absolute inset-0 bg-black/10' />
-        </div>
-      </div>
+    <div className='flex items-stretch'>
+      <form onSubmit={handleSubmit} className="flex-1">
+        <Fieldset className="h-full space-y-8 p-6 md:rounded-tr-none md:rounded-br-none rounded-xl border border-gray-200/80 bg-white/40 backdrop-blur-md shadow-xl box-border">
+          <Legend className="text-lg font-bold">User details</Legend>
+          <Field>
+            <Label className="block">First name</Label>
+            <Input
+              className="mt-1 block bg-gray-400 rounded-full px-3 py-1.5 text-sm w-full"
+              name="firstname"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <Label className="block">Last name</Label>
+            <Input
+              className="mt-1 block bg-gray-400 rounded-full px-3 py-1.5 text-sm w-full"
+              name="lastname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </Field>
+          <button
+            type="submit"
+            className="mt-4 rounded bg-gray-600 hover:bg-gray-700 text-white px-4 py-2"
+          >
+            Sign Up
+          </button>
+          {status && <p className="mt-2 text-sm text-gray-700">{status}</p>}
+        </Fieldset>
+      </form>
+      <img src={bgImage} alt="" className='w-[450px] h-auto object-cover md:rounded-tr-2xl md:rounded-br-2xl md:block hidden' />
     </div>
   )
 }

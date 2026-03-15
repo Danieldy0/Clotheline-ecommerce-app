@@ -44,9 +44,9 @@ function Form() {
   }
 
   return (
-    <div className='flex'>
-      <form onSubmit={handleSubmit}>
-        <Fieldset className="space-y-8 p-6 rounded-xl md:rounded-tr-none md:rounded-br-none border border-gray-200/80 bg-white/40 backdrop-blur-md shadow-xl box-border">
+    <div className='flex item-stretch'>
+      <form onSubmit={handleSubmit} className='flex-1'>
+        <Fieldset className="h-full space-y-8 p-6 rounded-xl md:rounded-tr-none md:rounded-br-none border border-gray-200/80 bg-white/40 backdrop-blur-md shadow-xl box-border">
           <Legend className="text-lg font-bold">User details</Legend>
           <Field>
             <Label className="block">First name</Label>
@@ -75,7 +75,7 @@ function Form() {
           {status && <p className="mt-2 text-sm text-gray-700">{status}</p>}
         </Fieldset>
       </form>
-      <img src={bgImage} alt="" className='w-[450px] object-cover md:rounded-tr-2xl md:rounded-br-2xl md:block hidden' />
+      <img src={bgImage} alt="" className='w-[450px] h-auto object-cover md:rounded-tr-2xl md:rounded-br-2xl md:block hidden' />
     </div>
   )
 }
