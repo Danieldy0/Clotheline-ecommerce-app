@@ -9,7 +9,7 @@ import { Card, CardContent } from "./ui/card";
 const Contact = () => {
     return (
         <section id="contact" className="scroll-mt-20 py-24 bg-white dark:bg-black overflow-hidden relative transition-colors duration-500">
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            <div className="mx-20 px-6 relative z-10">
                 <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                     <div className="inline-block relative mb-4">
                         <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 dark:text-gray-500">

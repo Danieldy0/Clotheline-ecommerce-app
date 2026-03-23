@@ -88,7 +88,16 @@ const HeroCarosel = () => {
       }
 
       const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      const dotTotalSize = 2 * rem;
+      let dotTotalSize;
+
+      // Scale dot spacing based on screen width
+      if (window.innerWidth < 768) {
+        dotTotalSize = 5 * rem; // Low density for mobile
+      } else if (window.innerWidth < 1024) {
+        dotTotalSize = 3.5 * rem; // Medium density for tablet
+      } else {
+        dotTotalSize = 2.5 * rem; // High density for desktop
+      }
 
       const cols = Math.max(1, Math.floor(rect.width / dotTotalSize));
       const rows = Math.max(1, Math.floor(rect.height / (dotTotalSize)));
@@ -232,7 +241,7 @@ const HeroCarosel = () => {
                     {slide.title}
                   </h1>
 
-                  <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-10 font-sans italic">
                     {slide.subtitle}
                   </p>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Award } from 'lucide-react';
 import AboutVideo from '../assets/about.mp4';
+import MinimalismHero from '../components/MinimalismHero'
 
 const About = () => {
   const videoRef = useRef(null);
@@ -24,19 +25,9 @@ const About = () => {
   }, []);
   return (
     <section id="about" className="scroll-mt-20 py-24 bg-white dark:bg-black font-sans transition-colors duration-500 overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <MinimalismHero />
+      <div className="container mx-auto px-6 max-w-7xl py-20">
         {/* Top Header Section (from Image 2) */}
-        <div className="text-center mb-20">
-          <div className="inline-block relative mb-4">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 dark:text-gray-500 uppercase">About</span>
-            <div className="h-[2px] w-8 bg-gray-400 dark:bg-gray-600 mx-auto mt-2"></div>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-light text-gray-900 dark:text-white mb-8 tracking-tight">About Us</h2>
-          <p className="max-w-3xl mx-auto text-gray-500 dark:text-gray-400 leading-relaxed text-lg">
-            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit.
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam
-          </p>
-        </div>
 
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content Column (from Image 1) */}

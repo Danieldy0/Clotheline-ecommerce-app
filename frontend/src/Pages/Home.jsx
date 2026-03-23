@@ -5,6 +5,9 @@ import HeroCarosel from '../components/HeroCarosel'
 import LogDialog from '../components/Utils/LogDialog'
 import About from '../components/About'
 import Contact from '../components/Contact'
+import ProductSection from '../components/ProductSection'
+import StyleNotes from '../components/StyleNotes'
+
 
 
 const Home = () => {
@@ -41,8 +44,11 @@ const Home = () => {
           />
         )}
         <HeroCarosel />
+        <ProductSection />
+        <StyleNotes />
         <About />
         <Contact />
+
       </main>
 
     </div>
