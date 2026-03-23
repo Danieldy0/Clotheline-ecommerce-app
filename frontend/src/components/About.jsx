@@ -69,7 +69,7 @@ const About = () => {
           {/* Right Image Column with floating card */}
           <div className="relative mt-10 lg:mt-0">
             <div className="rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
-              <video src={AboutVideo} autoPlay loop muted />
+              <video src={AboutVideo} autoPlay loop muted playsInline preload="metadata" className="w-full h-full object-cover" />
             </div>
 
             {/* Award Floating Card - precisely as in design */}

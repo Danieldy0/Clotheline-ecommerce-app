@@ -4,6 +4,8 @@ import Header from '../components/Header'
 import HeroCarosel from '../components/HeroCarosel'
 import LogDialog from '../components/Utils/LogDialog'
 import About from '../components/About'
+import Contact from '../components/Contact'
+
 
 const Home = () => {
   const location = useLocation()
@@ -40,7 +42,9 @@ const Home = () => {
         )}
         <HeroCarosel />
         <About />
+        <Contact />
       </main>
+
     </div>
   )
 }

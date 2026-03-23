@@ -86,20 +86,32 @@ const HeroCarosel = () => {
       }
 
       const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      const dotTotalSize = 2 * rem;
+      let dotTotalSize = 2.5 * rem; // Slightly larger than original to help performance
+
+      // Reduce dot density (resolution) based on screen width
+      if (window.innerWidth < 768) {
+        dotTotalSize = 5 * rem; // Very low density on mobile
+      } else if (window.innerWidth < 1200) {
+        dotTotalSize = 3.5 * rem; // Medium density on tablets
+      }
 
       const cols = Math.max(1, Math.floor(rect.width / dotTotalSize));
-      const rows = Math.max(1, Math.floor(rect.height / dotTotalSize));
+      const rows = Math.max(1, Math.floor(rect.height / (dotTotalSize)));
       const grid = [cols, rows];
       const numberOfElements = cols * rows;
 
-      staggerVisualizerEl.style.width = `${cols * 2}rem`;
-      staggerVisualizerEl.style.height = `${rows * 2}rem`;
+      staggerVisualizerEl.style.width = `${cols * dotTotalSize}px`;
+      staggerVisualizerEl.style.height = `${rows * dotTotalSize}px`;
 
       const fragment = document.createDocumentFragment();
       for (let i = 0; i < numberOfElements; i++) {
         const dotEl = document.createElement('div');
         dotEl.classList.add('dot');
+        // Dynamic sizing for dots based on rem to keep the "previous setup" feel
+        const size = rem * 0.5;
+        dotEl.style.width = `${size}px`;
+        dotEl.style.height = `${size}px`;
+        dotEl.style.margin = `${(dotTotalSize - size) / 2}px`;
         fragment.appendChild(dotEl);
       }
 
@@ -112,8 +124,8 @@ const HeroCarosel = () => {
       let nextIndex = 0;
 
       utils.set(cursorEl, {
-        x: stagger('-2rem', { grid, from: index, axis: 'x' }),
-        y: stagger('-2rem', { grid, from: index, axis: 'y' })
+        x: stagger(`-${dotTotalSize}px`, { grid, from: index, axis: 'x' }),
+        y: stagger(`-${dotTotalSize}px`, { grid, from: index, axis: 'y' })
       });
 
       function animateGrid() {
@@ -155,8 +167,8 @@ const HeroCarosel = () => {
             delay: stagger(50, { grid, from: index }),
           }, 0)
           .add(cursorEl, {
-            x: { from: stagger('-2rem', { grid, from: index, axis: 'x' }), to: stagger('-2rem', { grid, from: nextIndex, axis: 'x' }), duration: utils.random(800, 1200) },
-            y: { from: stagger('-2rem', { grid, from: index, axis: 'y' }), to: stagger('-2rem', { grid, from: nextIndex, axis: 'y' }), duration: utils.random(800, 1200) },
+            x: { from: stagger(`-${dotTotalSize}px`, { grid, from: index, axis: 'x' }), to: stagger(`-${dotTotalSize}px`, { grid, from: nextIndex, axis: 'x' }), duration: utils.random(800, 1200) },
+            y: { from: stagger(`-${dotTotalSize}px`, { grid, from: index, axis: 'y' }), to: stagger(`-${dotTotalSize}px`, { grid, from: nextIndex, axis: 'y' }), duration: utils.random(800, 1200) },
             ease: 'outCirc'
           }, '-=1500');
 
@@ -302,9 +314,6 @@ const HeroCarosel = () => {
 
         .stagger-visualizer .dot {
           position: relative;
-          width: 0.5rem;
-          height: 0.5rem;
-          margin: 0.75rem;
           background-color: currentColor;
           border-radius: 50%;
         }

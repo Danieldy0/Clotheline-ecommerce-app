@@ -25,6 +25,18 @@ const Header = () => {
     }
   };
 
+  const handleScrollToContact = (e) => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      e.preventDefault();
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Close mobile menu if open
+      const menuToggle = document.getElementById('menu_toggle');
+      if (menuToggle) menuToggle.checked = false;
+    }
+  };
+
   const handleScrollToTop = (e) => {
     if (window.location.pathname === '/') {
       e.preventDefault();
@@ -79,7 +91,7 @@ const Header = () => {
           <a href="/" className="hover:text-gray-900 transition-colors dark:hover:text-white" onClick={handleScrollToTop}>Home</a>
           <Pop2 />
           <a href="/#about" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={handleScrollToAbout}>About</a>
-          <a href="/" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={(e) => e.preventDefault()}>Contact</a>
+          <a href="/#contact" className="hover:text-gray-400 transition-colors dark:hover:text-white" onClick={handleScrollToContact}>Contact</a>
         </nav>
         <br />
         <hr className="border-gray-200 dark:border-gray-800" />
@@ -113,7 +125,7 @@ const Header = () => {
             <li><a href="/" className="hover:opacity-70 transition-opacity" onClick={handleScrollToTop}>Home</a></li>
             <li><Pop /></li>
             <li><a href="/#about" className="hover:opacity-70 transition-opacity" onClick={handleScrollToAbout}>About</a></li>
-            <li><a href="/" className="hover:opacity-70 transition-opacity">Contact</a></li>
+            <li><a href="/#contact" className="hover:opacity-70 transition-opacity" onClick={handleScrollToContact}>Contact</a></li>
           </ul>
         </div>
 
