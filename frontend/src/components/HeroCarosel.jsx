@@ -86,14 +86,8 @@ const HeroCarosel = () => {
       }
 
       const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      let dotTotalSize = 2.5 * rem; // Slightly larger than original to help performance
-
-      // Reduce dot density (resolution) based on screen width
-      if (window.innerWidth < 768) {
-        dotTotalSize = 5 * rem; // Very low density on mobile
-      } else if (window.innerWidth < 1200) {
-        dotTotalSize = 3.5 * rem; // Medium density on tablets
-      }
+      // High count, small dots as requested for all devices
+      const dotTotalSize = 2 * rem;
 
       const cols = Math.max(1, Math.floor(rect.width / dotTotalSize));
       const rows = Math.max(1, Math.floor(rect.height / (dotTotalSize)));
@@ -107,8 +101,8 @@ const HeroCarosel = () => {
       for (let i = 0; i < numberOfElements; i++) {
         const dotEl = document.createElement('div');
         dotEl.classList.add('dot');
-        // Dynamic sizing for dots based on rem to keep the "previous setup" feel
-        const size = rem * 0.5;
+        // Small dots as requested
+        const size = rem * 0.4;
         dotEl.style.width = `${size}px`;
         dotEl.style.height = `${size}px`;
         dotEl.style.margin = `${(dotTotalSize - size) / 2}px`;
@@ -316,6 +310,7 @@ const HeroCarosel = () => {
           position: relative;
           background-color: currentColor;
           border-radius: 50%;
+          will-change: transform;
         }
 
         .stagger-visualizer .cursor {
