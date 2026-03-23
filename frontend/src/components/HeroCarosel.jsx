@@ -73,6 +73,8 @@ const HeroCarosel = () => {
     const staggerVisualizerEl = staggerVisualizerRef.current;
     const wrapperEl = staggerVisualizerEl.parentElement;
 
+    let observer;
+
     function initGrid() {
       if (isUnmounted) return;
       if (animation) animation.pause();
@@ -86,7 +88,6 @@ const HeroCarosel = () => {
       }
 
       const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      // High count, small dots as requested for all devices
       const dotTotalSize = 2 * rem;
 
       const cols = Math.max(1, Math.floor(rect.width / dotTotalSize));
@@ -101,7 +102,6 @@ const HeroCarosel = () => {
       for (let i = 0; i < numberOfElements; i++) {
         const dotEl = document.createElement('div');
         dotEl.classList.add('dot');
-        // Small dots as requested
         const size = rem * 0.4;
         dotEl.style.width = `${size}px`;
         dotEl.style.height = `${size}px`;
@@ -169,7 +169,19 @@ const HeroCarosel = () => {
         index = nextIndex;
       }
 
-      animateGrid();
+      // Intersection Observer to stop animation when not in view
+      if (observer) observer.disconnect();
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateGrid();
+          } else {
+            if (animation) animation.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(wrapperEl);
     }
 
     initGrid();
@@ -184,6 +196,7 @@ const HeroCarosel = () => {
     return () => {
       isUnmounted = true;
       if (animation) animation.pause();
+      if (observer) observer.disconnect();
       window.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
     };

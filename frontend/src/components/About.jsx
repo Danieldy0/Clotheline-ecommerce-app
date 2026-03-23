@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Award } from 'lucide-react';
 import AboutVideo from '../assets/about.mp4';
 
 const About = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(e => console.error("Video play failed:", e));
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
   return (
     <section id="about" className="scroll-mt-20 py-24 bg-white dark:bg-black font-sans transition-colors duration-500 overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -69,7 +88,15 @@ const About = () => {
           {/* Right Image Column with floating card */}
           <div className="relative mt-10 lg:mt-0">
             <div className="rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
-              <video src={AboutVideo} autoPlay loop muted playsInline preload="metadata" className="w-full h-full object-cover" />
+              <video
+                ref={videoRef}
+                src={AboutVideo}
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Award Floating Card - precisely as in design */}
