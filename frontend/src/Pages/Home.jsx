@@ -44,8 +44,6 @@ const Home = () => {
           />
         )}
         <HeroCarosel />
-        <ProductSection />
-        <StyleNotes />
         <About />
         <Contact />
 

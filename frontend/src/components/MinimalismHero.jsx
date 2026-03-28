@@ -4,17 +4,6 @@ import Img from '../assets/minimalism.jpg';
 const MinimalismHero = () => {
     return (
         <div>
-            <div className="text-center mb-20">
-                <div className="inline-block relative mb-4">
-                    <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 dark:text-gray-500 uppercase">About</span>
-                    <div className="h-[2px] w-8 bg-gray-400 dark:bg-gray-600 mx-auto mt-2"></div>
-                </div>
-                <h2 className="text-5xl md:text-6xl font-light text-gray-900 dark:text-white mb-8 tracking-tight">About Us</h2>
-                <p className="max-w-3xl mx-auto text-gray-500 dark:text-gray-400 leading-relaxed text-lg">
-                    Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit.
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam
-                </p>
-            </div>
             <div className="relative w-full h-[90vh] bg-white dark:bg-black group overflow-hidden">
                 {/* Hero Image */}
                 <div className="absolute inset-0 z-0">
