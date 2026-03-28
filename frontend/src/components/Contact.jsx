@@ -81,7 +81,7 @@ const Contact = () => {
                     {/* Right Column: Form */}
                     <div className="animate-in fade-in slide-in-from-right-4 duration-1000">
                         <Card className="border-none shadow-2xl shadow-gray-200/50 dark:shadow-none dark:bg-[#0a0a0a]">
-                            <CardContent className="p-8 md:p-12">
+                            <CardContent className="p-8 md:p-auto">
                                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                                     Send us a message
                                 </h3>
