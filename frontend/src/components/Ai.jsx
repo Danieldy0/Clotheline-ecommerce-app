@@ -69,7 +69,7 @@ const Ai = () => {
                     </button>
                 </DialogTrigger>
 
-                <DialogContent className="fixed bottom-[110px] right-6 left-auto top-30 translate-x-0 translate-y-0 sm:translate-x-0 sm:translate-y-0 w-[calc(100%-3rem)] sm:w-[440px] h-[75vh] flex flex-col p-0 gap-0 overflow-hidden bg-white/95 dark:bg-black/95 backdrop-blur-xl border-gray-200 dark:border-neutral-800 rounded-[2.5rem] shadow-2xl 
+                <DialogContent className="fixed bottom-[110px] right-6 left-auto top-auto translate-x-0 translate-y-0 sm:translate-x-0 sm:translate-y-0 w-[calc(100%-3rem)] sm:w-[440px] h-[75vh] flex flex-col p-0 gap-0 overflow-hidden bg-white/95 dark:bg-black/95 backdrop-blur-xl border-gray-200 dark:border-neutral-800 rounded-[2.5rem] shadow-2xl 
                     {/* Entry Animations */}
                     data-[state=open]:animate-in
                     data-[state=open]:fade-in-0
