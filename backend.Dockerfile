@@ -27,14 +27,11 @@ ENV SECRET_KEY=temporary_build_key_value
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
 # Copy the entrypoint script and make it executable
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-# Expose port (Azure/GCP/AWS usually default to 80 or 8080, but 8000 is fine)
+# Expose port
 EXPOSE 8000
 
 # Use the ENTRYPOINT to ensure migrations always run
