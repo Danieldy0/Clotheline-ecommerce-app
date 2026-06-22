@@ -21,6 +21,12 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy project
 COPY . /app/
 
+# Set a temporary environment variable just for the build process
+ENV SECRET_KEY=temporary_build_key_value
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
