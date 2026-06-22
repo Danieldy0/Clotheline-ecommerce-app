@@ -4,7 +4,7 @@ from .models import Category, Product, ProductImage, ProductVariant
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'slug']
+        fields = ['id', 'name', 'slug',]
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,7 +28,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = [
             'id', 'category', 'category_name', 'name', 'slug',
-            'description', 'base_price', 'images', 'variants', 'created_at'
+            'description', 'base_price', 'global_stock', 'images', 'variants', 'created_at'
         ]
         # Use slug as the primary lookup for the product list
         lookup_field = 'slug'
@@ -54,12 +54,24 @@ class ProductSerializer(serializers.ModelSerializer):
             
             # Handle multiple image files
             image_files = request.FILES.getlist('image_files')
+            # Fallback to single 'image' if 'image_files' is empty
+            if not image_files:
+                single_image = request.FILES.get('image')
+                if single_image:
+                    image_files = [single_image]
+                    
             for image_file in image_files:
                 images_data.append({'image': image_file})
 
-        # Default slug if not provided
+        # Unique slug generation
         if 'slug' not in validated_data or not validated_data['slug']:
-            validated_data['slug'] = validated_data['name'].lower().replace(' ', '-')
+            base_slug = validated_data['name'].lower().replace(' ', '-')
+            slug = base_slug
+            counter = 1
+            while Product.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            validated_data['slug'] = slug
             
         product = Product.objects.create(**validated_data)
         

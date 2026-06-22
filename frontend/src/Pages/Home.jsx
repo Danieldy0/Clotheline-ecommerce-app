@@ -6,7 +6,8 @@ import LogDialog from '../components/Utils/LogDialog'
 import About from '../components/About'
 import Contact from '../components/Contact'
 import ProductSection from '../components/ProductSection'
-import StyleNotes from '../components/StyleNotes'
+import Ai from '../components/Ai'
+import Footer from '../components/Footer'
 
 
 
@@ -44,11 +45,12 @@ const Home = () => {
           />
         )}
         <HeroCarosel />
+        <ProductSection />
         <About />
         <Contact />
-
+        <Ai />
       </main>
-
+      <Footer />
     </div>
   )
 }

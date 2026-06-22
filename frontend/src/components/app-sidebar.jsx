@@ -47,13 +47,8 @@ const data = {
             icon: LayoutDashboardIcon,
         },
         {
-            title: "Products",
-            url: "/administration/products",
-            icon: FileTextIcon,
-        },
-        {
             title: "Inventory",
-            url: "/administration/inventory",
+            url: "/administration/products",
             icon: ClipboardListIcon,
         },
         {
@@ -82,19 +77,9 @@ const data = {
     documents: [
         {
             name: "Orders",
-            url: "/administration",
+            url: "/administration/products",
             icon: DatabaseIcon,
-        },
-        {
-            name: "Promotions",
-            url: "/administration",
-            icon: ArrowUpCircleIcon,
-        },
-        {
-            name: "Stock Reports",
-            url: "/administration",
-            icon: FileIcon,
-        },
+        }
     ],
 }
 

@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'clothline_api.wsgi.application'
 
 
 # Database
-# Use DATABASE_URL if it exists (Render/Production), otherwise fallback to Docker local postgres
+# Use DATABASE_URL if it exists (Render/Production), otherwise fallback to local SQLite
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:postgres@db:5432/postgres',
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
         conn_max_age=600
     )
 }
@@ -150,5 +150,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media files
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

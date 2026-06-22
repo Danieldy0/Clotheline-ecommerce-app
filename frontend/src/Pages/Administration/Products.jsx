@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AppSidebar } from "@/components/app-sidebar"
+import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { DataTable } from "@/components/data-table"
@@ -40,23 +41,33 @@ export default function Products() {
     }
 
     return (
-        <SidebarProvider>
-            <AppSidebar variant="inset" />
-            <SidebarInset>
-                <SiteHeader />
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-10">
-                    <div className="flex items-center justify-between">
-                        <h1 className="text-2xl font-bold tracking-tight">Products</h1>
-                    </div>
-                    {isLoading ? (
-                        <div className="flex items-center justify-center h-64">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <TooltipProvider>
+            <SidebarProvider className="p-6"
+                style={{
+                    "--sidebar-width": "calc(var(--spacing) * 72)",
+                    "--header-height": "calc(var(--spacing) * 12)",
+                }}>
+                <AppSidebar variant="inset" />
+                <SidebarInset className="rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+                    <SiteHeader />
+                    <div className="flex flex-1 flex-col">
+                        <div className="@container/main flex flex-1 flex-col gap-2">
+                            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+                                <div className="px-4 lg:px-6">
+                                    <h1 className="text-2xl font-bold tracking-tight">Products</h1>
+                                </div>
+                                {isLoading ? (
+                                    <div className="flex items-center justify-center h-64">
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                                    </div>
+                                ) : (
+                                    <DataTable data={products} onRefresh={fetchProducts} />
+                                )}
+                            </div>
                         </div>
-                    ) : (
-                        <DataTable data={products} onRefresh={fetchProducts} />
-                    )}
-                </div>
-            </SidebarInset>
-        </SidebarProvider >
+                    </div>
+                </SidebarInset>
+            </SidebarProvider>
+        </TooltipProvider>
     )
 }

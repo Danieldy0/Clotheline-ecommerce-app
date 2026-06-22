@@ -192,16 +192,8 @@ const Sidebar = React.forwardRef((
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
       data-side={side}>
-      {/* This spacer pushes the SidebarInset in the flex layout */}
-      <div
-        className={cn(
-          "relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear",
-          "group-data-[collapsible=offcanvas]:w-0",
-          "group-data-[side=right]:rotate-180",
-          variant === "floating" || variant === "inset"
-            ? "group-data-[state=collapsed]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
-            : "group-data-[state=collapsed]:w-[--sidebar-width-icon]"
-        )} />
+      {/* Spacer removed — SidebarInset uses explicit marginLeft via useSidebar() */}
+      <div className="w-0 h-0" />
       <div
         className={cn(
           "fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear md:flex",
@@ -273,13 +265,18 @@ const SidebarRail = React.forwardRef(({ className, ...props }, ref) => {
 SidebarRail.displayName = "SidebarRail"
 
 const SidebarInset = React.forwardRef(({ className, ...props }, ref) => {
+  const { state, isMobile } = useSidebar()
+
   return (
     <main
       ref={ref}
+      style={!isMobile ? {
+        marginLeft: state === "collapsed"
+          ? "var(--sidebar-width-icon)"
+          : "var(--sidebar-width)"
+      } : undefined}
       className={cn(
-        "relative flex min-w-0 flex-1 flex-col bg-background transition-all duration-200 ease-linear",
-        "peer-data-[variant=inset]:m-2 peer-data-[variant=inset]:rounded-xl peer-data-[variant=inset]:shadow",
-        "md:peer-data-[state=expanded]:ml-64 md:peer-data-[state=collapsed]:ml-12",
+        "relative flex min-w-0 flex-1 flex-col bg-background transition-[margin-left] duration-200 ease-linear",
         className
       )}
       {...props} />
